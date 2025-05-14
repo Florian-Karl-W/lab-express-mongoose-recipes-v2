@@ -58,11 +58,11 @@ app.get('/recipes', (req, res) => {
 //  Iteration 5 - Get a Single Recipe
 //  GET  /recipes/:id route
 app.get('/recipes/:id', (req, res) => {
-    const {recipeId} = req.params;
+    const {Id} = req.params;
 
-    Recipe.findById(recipeId)
+    Recipe.findById(Id)
     .then((foundRecipe) => {
-        req.json(foundRecipe)
+        res.json(foundRecipe)
     })
     .catch((error) => {
         console.log("Error getting recipes", error)
@@ -72,11 +72,11 @@ app.get('/recipes/:id', (req, res) => {
 
 //  Iteration 6 - Update a Single Recipe
 //  PUT  /recipes/:id route
-app.get('recipes/:id', (req, res) => {
-    const {recipeId} = req.params;
+app.get('/recipes/:id', (req, res) => {
+    const {Id} = req.params;
     const updatedData = req.body;
 
-    Recipe.findByIdAndUpdate(recipeId, updatedData, {new: true})
+    Recipe.findByIdAndUpdate(Id, updatedData, {new: true})
     .then((updatedRecipe) => {
         res.json(updatedRecipe)
     })
@@ -90,9 +90,9 @@ app.get('recipes/:id', (req, res) => {
 //  Iteration 7 - Delete a Single Recipe
 //  DELETE  /recipes/:id route
 app.delete('/recipes/:id', (req, res) => {
-    const {recipeId} = req.params
+    const {Id} = req.params
 
-    Recipe.findByIdAndDelete(recipeId)
+    Recipe.findByIdAndDelete(Id)
 
     .then((deleteRecipe) => {
         res.json(deleteRecipe)
